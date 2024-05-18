@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!--스타일-->
+        <link rel="stylesheet" href="./style/default.css">
+        <link rel="stylesheet" href="./style/font.css">
+        <link rel="stylesheet" href="./style/style.css">
+        <link rel="stylesheet" href="./style/swiper.min.css">
+        <!--스크립트-->
+        <script type="text/javascript" src="./script/script.js"></script>
+        <script type="text/javascript" src="./script/swiper.min.js"></script>
+        <!--폰트-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <section class="safeViewSec">
+            <div class="timeBox">
+                <p class="txt">남은시간</p>
+                <p class="time" id="timer">40:00</p>
+            </div>
+            <div class="BackgroundMusicDiv">
+                <audio id="bgMusic" loop>
+                    <source src="./bgm/bgm.mp3" type="audio/mpeg">
+                </audio>
+                <button id="playPauseButton">🎵 BGM Play Click!</button>
+            </div>
+            <ul class="viewList">
+                <li class="active">
+                    <article class="thumbnailArti">
+                        <div class="title">
+                            그 날 (That Day)
+                        </div>
+                        <div class="imgBox">
+                            <img src="./img/thumbnail.png" alt="그날 (That Day)"/>
+                        </div>
+                        <div class="copyRight">
+                            Made by. EN<br/>
+                            developer. 탱지
+                        </div>
+                        <button type="button" class="startBtn">시작하기</button>
+                        <div class="copyRight">
+                            시작하기 버튼 클릭시, 타이머가 작동됩니다.<br/>
+                            해당 테마는 공포요소가 포함되어있을 수 있습니다. <br/>
+                            힌트와 정답보기가 제공되고 있습니다. 막힐 때 적절히 사용해주세요.<br/>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img1.png" alt="폐가"/>
+                        </div>
+                        <div class="txtBox">
+                            어릴적, 난 그날을 기억한다.<br/><br/>
+                            나와 소꿉친구였던 R이 죽었던, 그날...<br/>
+                            비가 오던 날, 호기심이 많았떤 우리둘은 <br/>
+                            모두들 가지 말라고 만류하던 폐가로 향한다.
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">폐가로 들어가기</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img2.png" alt="도어락"/>
+                        </div>
+                        <div class="txtBox">
+                            폐가에 도착한 우리 둘은<br/>
+                            망설임 없이 폐가의 문을 당겨보는데<br/>
+                            잠겨있었다.<br/>
+                            문은 먼지가 가득한 도어락으로 잠겨있었고<br/>
+                            우리는 도어락을 열어보았다<br/>
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">도어락 열기</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img2.png" alt="도어락"/>
+                        </div>
+                        <div class="txtBox">
+                            도어락은 반응하지 않았고, <br/>
+                            옆에는 방향 자물쇠로 잠겨있었으며<br/>
+                            작은 쪽지가 끼워져 있었다.<br/>
+                            쪽지는 전혀 바래지 않은 것으로 보아<br/>
+                            누군가 끼워 둔 것이 틀림 없다. <br/>
+                            일단은 쪽지를 확인해보자.
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">쪽지 확인하기</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img3.png" alt="쪽지"/>
+                        </div>
+                        <div class="txtBox">
+                            저 숫자들은 무엇을 의미하는 것이며, <br/>
+                            쪽지의 + 모양은 무엇을 의미하는것일까...<br/>
+                            저 숫자들과 도어락으로 방향자물쇠를 푸는 것일까? <br/><br/><br/>
+                            (아래 버튼을 클릭하여, 정답을 입력해주세요.)
+                        </div>
+                        <div class="directionAnswer">
+                            <input type="hidden" id="answer1"/>
+                            <div class="showBox"></div>
+                            <div class="dirctionBtnWrap">
+                                <button type="button" value="위" class="directionBtn upBtn">위 ( 🔼 )</button>
+                                <button type="button" value="왼" class="directionBtn leftBtn">왼쪽 ( ◀️ )</button>
+                                <button type="button" value="오" class="directionBtn rightBtn">오른쪽 ( ▶️ )</button>
+                                <button type="button" value="아" class="directionBtn downBtn">아래 ( 🔽 )</button>
+                            </div>
+                            <div class="dirctionBtnWrap">
+                                <button type="button" value="reset" class="directionBtn resetBtn">초기화 ( reset )</button>
+                            </div>
+                        </div>
+                        <div class="failBox">
+                            ❌❌ 정답 아님!! ❌❌
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">정답입력</button>
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn"> 🔍 힌트보기</button>
+                            <div class="hintView">
+                                방향자물쇠이기 때문에<br/> 
+                                도어락 사이를 지나가면서 방향을 유추하는 방식입니다.<br/><br/>
+
+                                + 두개의 숫자를 합치라는 의미이며, <br/>
+                                도어락에서 붙어있고 합쳤을때 <br/>
+                                3이 나오는 숫자는 1과 2입니다. <br/>
+                                도어락에서 합쳤을때 7이며 <br/>
+                                붙어있는 숫자는 2와 5입니다.<br/>
+                                그렇게 이동하는 그림을 그려주시면 <br/>
+                                방향자물쇠 정답이 나오게됩니다. <br/><br/><br/><br/>
+                                정답 : 아래, 오른쪽, 아래, 왼쪽, 위
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img4.png" alt="폐가"/>
+                        </div>
+                        <div class="txtBox">
+                            폐가에 들어섰다
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">복도</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img4.png" alt="폐가"/>
+                        </div>
+                        <div class="txtBox">
+                            폐가 내부는 정말 이상한 냄새가 났다.<br/>
+                            냄새의 원인이 무엇인지 모르겠지만<br/>
+                            냄새를 맡은 우리들은 머리가 정말 어지러웠다. <br/>
+                            당장이라도 나가고싶었다. <br/>
+                            하지만 여기까지 온 이상 나갈 수 없다.<br/>
+                            좀 더 살펴보자
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">살펴보기</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img5.png" alt="신문"/>
+                        </div>
+                        <div class="txtBox">
+                            주변은 어둠 뿐이었지만,<br/>
+                            어둠속에 적응해 버린 건지<br/>
+                            앞으로 전진 할 수 있을정도로만 보일 뿐이었다. <br/>
+                            다다른 곳에는 서랍장이 하나 있었으며 자물쇠로 잠겨있었다. <br/>
+                            위쪽에는 스크랩된 신문의 일부가 있었으며<br/>
+                            아무래도 자물쇠를 열기 위한 단서일것같다.<br/><br/>
+                            [단서]<br/>
+                            자물쇠는 5자리 자음, 모음 자물쇠이다<br/>
+                        </div>
+                        <div class="iptBox">
+                            <input type="text" class="ipt" id="answer2" placeholder="2글자"/>
+                        </div>
+                        <div class="failBox">
+                            ❌❌ 정답 아님!! ❌❌
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">정답입력</button>
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn"> 🔍 힌트보기</button>
+                            <div class="hintView">
+                                범죄, 성분, 사범에는 공통된 단어가 있습니다<br/><br/><br/><br/>
+                                정답 : 마약
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img6.png" alt="철문"/>
+                        </div>
+                        <div class="txtBox">
+                            서랍안에는 수첩이 하나 있었으며, <br/>
+                            수첩을 열어보려는데 건물 밖에서 통화하는 소리가 들렸다.<br/>
+                            "아이 XX, 사장님!!!!!"<br/>
+                            누군지 정체모를 남자의 통화하는 소리....<br/>
+                            본능적으로 이곳에서 도망쳐야 한다고 생각한 우리는<br/>
+                            2층으로 도망가려는데 2층은 철문으로 잠겨 있었다. <br/>
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">철문</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img7.png" alt="철문 메모"/>
+                        </div>
+                        <div class="txtBox">
+                            철문을 자세히 보니 작은 메모가 있었고, <br/>
+                            그 메모로 철문자물쇠를 풀 수 있을것 같다. <br/>
+                            철문 자물쇠는 숫자 4자리로 되어있었다.
+                        </div>
+                        <div class="iptBox">
+                            <input type="text" class="ipt" id="answer3" placeholder="숫자 4자리"/>
+                        </div>
+                        <div class="failBox">
+                            ❌❌ 정답 아님!! ❌❌
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">정답입력</button>
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn"> 🔍 힌트보기</button>
+                            <div class="hintView">
+                                앞에 있는 영어를<br/>
+                                뒤에 있는 숫자의 각도만큼 뒤집는 문제입니다.<br/>
+                                <div class="imgBox">
+                                    <img src="./img/example1.png" alt="예시"/>
+                                </div>
+                                <br/><br/><br/><br/><br/><br/><br/><br/>
+                                정답 : 3909
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img8.png" alt="계단"/>
+                        </div>
+                        <div class="txtBox">
+                            철문 자물쇠가 열렸다.<br/>
+                            위층으로 가는 계단이 보였고<br/>
+                            우리는 계단으로 빠르게 올라갔다.
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">계단</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img9.png" alt="문"/>
+                        </div>
+                        <div class="txtBox">
+                            계단으로 올라오니 <br/>
+                            아직 밖에 있단 남자는 통화중인거 같았다. <br/>
+                            여기 있다가는 들킬 수 있으니, <br/>방으로 들어가야 할 거 같은데..<br/>
+                            방문은 도어락으로 잠겨있었다.<br/>
+                            단서가 있나 수첩을 살펴봐야겠다.
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">수첩</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img10.png" alt="노트"/>
+                        </div>
+                        <div class="txtBox">
+                            수첩에는 거래날짜가 적혀 있었다. <br/>
+                            거래 날짜와 도어락 비밀번호가 상관이 있을까? <br/>
+                            도어락은 정상 작동중이었고,  <br/>
+                            비밀번호를 입력하자. 
+                        </div>
+                        <div class="imgBox">
+                            <img src="./img/passward.png" alt="비밀번호"/>
+                        </div>
+                        <div class="iptBox">
+                            <input type="text" class="ipt" id="answer4" placeholder="도어락 비밀번호 입력 (숫자만)"/>
+                        </div>
+                        <div class="failBox">
+                            ❌❌ 정답 아님!! ❌❌
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">정답입력</button>
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn"> 🔍 힌트보기</button>
+                            <div class="hintView">
+                                도어락 # 문제입니다.<br/>
+                                #에서 123345689가 위치하는 곳의 <br/>
+                                테두리 모양을 생각해보세요. <br/>
+                                월이 위쪽, 일이 아래쪽입니다.<br/>
+                                <div class="imgBox">
+                                    <img src="./img/example2.png" alt="예시"/>
+                                </div>
+                                <br/><br/><br/><br/>
+                                정답 : 4385
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img11.png" alt="방"/>
+                        </div>
+                        <div class="txtBox">
+                            문을 열고 들어가니 방 하나가 나왔다.<br/>
+                            아무래도 이 곳은 폐가로 알려진<br/>
+                            마약과 관련된 어떤 장소인거 같다.<br/>
+                            잡히기 전에 이곳을 탈출할 방법을 찾아봐야 할 것 같다. <br/>
+                            일단 주변을 둘러보자
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">둘러보기</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img12.png" alt="옷장"/>
+                        </div>
+                        <div class="txtBox">
+                            한 곳에는 잠겨진 옷장이 하나 있었다.
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">옷장 확인하기</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="txtBox">
+                            옷장은 자물쇠로 잠겨있었다. <br/>
+                            옷장 문을 열기 위해 단서를 보니 벽에는<br/>
+                            스크랩 된 신문 기사가 있었다. <br/><br/>
+                            영어 4자리 자물쇠 (전부 대문자로 입력)<br/><br/>
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn viewBtn"> ✉️ 기사 1 </button>
+                            <div class="hintView">
+                                <div class="imgBox">
+                                    <img src="./img/img13.png" alt="기사1"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn viewBtn"> ✉️ 기사 2 </button>
+                            <div class="hintView">
+                                <div class="imgBox">
+                                    <img src="./img/img14.png" alt="기사2"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn viewBtn"> ✉️ 기사 3 </button>
+                            <div class="hintView">
+                                <div class="imgBox">
+                                    <img src="./img/img15.png" alt="기사3"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn viewBtn"> ✉️ 기사 4 </button>
+                            <div class="hintView">
+                                <div class="imgBox">
+                                    <img src="./img/img15.png" alt="기사4"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="iptBox">
+                            <input type="text" class="ipt" id="answer5" placeholder="영어 4자리(대문자로 입력)"/>
+                        </div>
+                        <div class="failBox">
+                            ❌❌ 정답 아님!! ❌❌
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">정답입력</button>
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn"> 🔍 힌트보기</button>
+                            <div class="hintView">
+                                신문의 빈 공백을 찾아보세요!
+                                <br/><br/><br/><br/>
+                                정답 : HIDE
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img17.png" alt="옷장안"/>
+                        </div>
+                        <div class="txtBox">
+                           옷장이 열렸고, 안에는 굉장히 <br/>
+                           낡아보이는 옷들이 많이 들어있었지만 <br/>
+                           딱히 단서가 될 만한 물건은 없어 보였다.<br/>
+                           그떄, 아래에서 누군가 올라오는 소리가 들렸다.<br/>
+                           아까 밖에서 통화하던 그 남자였다.<br/>
+                           아무래도 이 방으로 들어오려는거 같다.<br/>
+                           빨리 숨어야 할 것 같다.
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">숨기</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img18.png" alt="옷장안"/>
+                        </div>
+                        <div class="txtBox">
+                           안에서 밖은 볼 수 없지만, <br/>
+                           아까 그 남자의 통화 목소리가 계속해서 들려왔다.<br/>
+                           얼마나 흘렀을까...<br/>
+                           통화하는 말소리가 들리지 않았고,<br/>
+                           도어락 소리도 다시 났다.<br/>
+                           나는 옷들 사이에 숨어 있었고<br/>
+                           나보다 용감했던 R이 옷장 문을 열고 나간다고 했다.
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">문열기</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img19.png" alt="옷장안"/>
+                        </div>
+                        <br/>
+                        <div class="txtBox">
+                           <div class="red big">이제서야 나오네...?</div><br/>
+                           문을 열자 기다렸다는 듯이<br/>
+                           그남자 R을 끌고 나갔고<br/>
+                           나는 어떻게 해야 살 수 있을지 고민했다.<br/>
+                           고민하다보니 창문이 보였다. 
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">창문</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img20.png" alt="창문"/>
+                        </div>
+                        <div class="txtBox">
+                           창문은 잠겨 있었고, <br/>
+                           다른단서는 없어 보였다. <br/>
+                           창문을 어떻게든 열기 위해 <br/>
+                           수첩을 뒤졌다. 
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">수첩 확인하기</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img21.png" alt="창문"/>
+                        </div>
+                        <div class="txtBox">
+                            수첩에는 거래장부가 있었고, <br/>
+                            오늘은 6월 1일이다.<br/>
+                            박사장이라는 사람이 오기로 되어 있다.<br/>
+                            거래 장부를 확인해보자.<br/>
+                            ( 창문 자물쇠는 3자리 숫자로 되어있다. ) 
+                        </div>
+                        <div class="iptBox">
+                            <input type="text" class="ipt" id="answer6" placeholder="숫자 3자리"/>
+                        </div>
+                        <div class="failBox">
+                            ❌❌ 정답 아님!! ❌❌
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">정답입력</button>
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn"> 🔍 힌트보기</button>
+                            <div class="hintView">
+                                월과 일의 곱<br/>
+                                월과 일의 합<br/>
+                                거래 담당자 성의 획수를 구해보세요!
+                                <br/><br/><br/><br/>
+                                정답 : 678
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img22.png" alt="창문"/>
+                        </div>
+                        <div class="txtBox">
+                            창문이 열렸다.<br/>
+                            창문은 충분히 커서 내가 나갈 수 있었지만<br/>
+                            여기는 2층이다.<br/>
+                            뛰어 내릴 순 없다.<br/>
+                            무언가를 연결해서 내려갈 수 있을거 같은데<br/>
+                            무엇을 연결해야할까?<br/>
+                            (정답은 한글자입니다.)
+                        </div>
+                        <div class="iptBox">
+                            <input type="text" class="ipt" id="answer7" placeholder="한글자"/>
+                        </div>
+                        <div class="failBox">
+                            ❌❌ 정답 아님!! ❌❌
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">정답입력</button>
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn"> 🔍 힌트보기</button>
+                            <div class="hintView">
+                                옷장에 뭔가가 있었습니다
+                                <br/><br/><br/><br/>
+                                정답 : 옷
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img22.png" alt="창문"/>
+                        </div>
+                        <div class="txtBox">
+                           옷들을 모두 묶었더니 충분히 내려갈만한 길이가 되었다.<br/>
+                           묶은 옷들은 지지할만한 지지봉이 필요할 거 같다.
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">지지봉</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img23.png" alt="수납장"/>
+                        </div>
+                        <div class="txtBox">
+                            수납장 안에 있는 물건을 <br/>
+                            지지봉으로 사용 할 수 있을거 같다.<br/>
+                            수납장 문이 잠겨 있었지만<br/>
+                            수납장 위 쪽에 단서같이 보이는 게 있다. <br/>
+                            수납장 문을 열어보자. 
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn viewBtn"> ✉️ 단서 확인하기</button>
+                            <div class="hintView">
+                                <div class="imgBox">
+                                    <img src="./img/img24.png" alt="쪽지"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="iptBox">
+                            <input type="text" class="ipt" placeholder="" id="answer8"/>
+                        </div>
+                        <div class="failBox">
+                            ❌❌ 정답 아님!! ❌❌
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">정답입력</button>
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn"> 🔍 힌트보기</button>
+                            <div class="hintView">
+                                자음. 모음. 받침 순으로 변환하는 문제입니다.<br/>
+                                마지막 줄의 +2는 받침이 없으므로 무시하면 됩니다.<br/>
+                                <br/><br/><br/><br/>
+                                정답 : 문을열자
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img22.png" alt="창문"/>
+                        </div>
+                        <div class="txtBox">
+                           지지봉에 옷들을 연결했더니 <br/>
+                           다른 자가 건물 내부로 들어오고 있었다. <br/>
+                           아무래도 오늘 거래하기로 한 박사장이 틀림없다.<br/>
+                           지금이 기회다 탈출하자
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">탈출</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img25.png" alt="철장"/>
+                        </div>
+                        <div class="txtBox">
+                           무사히 1층으로 내려왔더니<br/>
+                           들어올 땐 없었던 정문이 잠겨있었다.<br/>
+                           정문에도 단서가 있을지 모른다.<br/>
+                           주변을 둘러보자
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">철장</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img26.png" alt="철장(사다리타기)"/>
+                        </div>
+                        <div class="txtBox">
+                           철장을 보니 답이 쓰여져 있는거만 같다.<br/>
+                           ( 이 문제는 힌트가 없습니다 )
+                        </div>
+                        <div class="iptBox">
+                            <input type="text" class="ipt" placeholder="" id="answer9"/>
+                        </div>
+                        <div class="failBox">
+                            ❌❌ 정답 아님!! ❌❌
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">정답입력</button>
+                        </div>
+                        <div class="hintBox">
+                            <button type="button" class="hintBtn"> 🔍 힌트보기</button>
+                            <div class="hintView">
+                                힌트없음 (end!)
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="imgBox">
+                            <img src="./img/img27.png" alt="탈출끝"/>
+                        </div>
+                        <div class="txtBox">
+                           나는 바로 달아났고 뒤에서 쫓아오던 자의 모습이었다.<br/>
+                           그게 귀신이었는지. 사람이었는지 나는 아직도 모른다.<br/>
+                           확실한건 나는 소꿉친구 R을 버리고<br/>
+                           도망쳤고, 지금까지도 나는 내 친구가<br/>
+                           죽었는지 살았는지 조차도 모른다.
+                        </div>
+                        <div class="btnBox">
+                            <button type="button" class="orangeBtn">탈출성공!</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="txtBox">
+                            <div class="result"><input type="text" class="hideBorder"/>님!<br/></div>
+                            🎉 탈출 성공을 축하드립니다<br/><br/><br/>
+                        </div>
+                        <div class="copyRight">
+                            사진 캡쳐용 이름 입력란입니다 😆<br/>
+                            캡쳐 후 그날의 방탈출을 기념하세요! 
+                        </div>
+                    </article>
+                </li>
+                <li class="">
+                    <article class="commonArti">
+                        <div class="txtBox">
+                           <div class="red big">탈출실패</div><br/>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </section>
+    </body>
+</html>
